@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.exceptions.ExcessDestinationException;
 import model.exceptions.IllegalDestinationException;
 
 // A class representing a travel bucket list having a list of destinations (max: 30 destinations) and visit status
@@ -26,9 +27,9 @@ public class TravelBucketList {
     
     // REQUIRES: destinations should not be null or empty and list may not exceed 30 destinations
     // MODIFIES: this
-    // EFFECTS: adds new destination to list
+    // EFFECTS: adds one new destination to list
     public void addDestination(String destinations) {
-        if (destinations == null || destinations.isEmpty()) {
+        if (destinations == null || destinations.length() == 0) {
             throw new IllegalDestinationException("Destination can not be null or empty");
         }
         if (destinations.size() >= MAX_DESTINATIONS) {
