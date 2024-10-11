@@ -6,7 +6,7 @@ public class Destination {
     private boolean visitStatus;        // visited or not yet visited
 
     // MODIFIES: this
-    // EFFECTS: constructs a destination with a visit status (initializes as not yet visited)
+    // EFFECTS: constructs a destination location with a visit status (initializes as not yet visited)
     public Destination(String destination) {
         this.destination = destination;
         this.visitStatus = false;
@@ -25,5 +25,12 @@ public class Destination {
     // EFFECTS: marks destination as visited 
     public void markAsVisited() {
         this.visitStatus = true;
+    }
+
+    // REQUIRES: destination should not be null or empty
+    // MODIFIES: this
+    // EFFECTS: returns a specified destination with status visited or not yet visited
+    public String toString() {
+        return destination + (visitStatus ? "Visited" : "Not yet visited");
     }
 }
