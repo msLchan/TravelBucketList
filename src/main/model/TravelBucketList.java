@@ -16,7 +16,7 @@ public class TravelBucketList {
         this.destinations = new ArrayList<>();
     }
     
-    // REQUIRES: destinations should not be null or empty 
+    // REQUIRES: destination to add should not be null or empty 
     //           specified destination should not already be in list
     //           list may not exceed 30 destinations
     // MODIFIES: this
@@ -29,34 +29,33 @@ public class TravelBucketList {
     // REQUIRES: specified destination must exist in list 
     // MODIFIES: this
     // EFFECTS: removes specified destination
-    public void removeDestination(String location) {
-        Destination toRemove = null;
+    public boolean removeDestination(String location) {
         for (Destination destination : destinations) {
             if (destination.getDestination().equals(location)){
-                toRemove = destination;
+                destinations.remove(destination);
+                return true;                       // Successfully removed destination
             }
         }
-        destinations.remove(toRemove);   
+        return false;                              // Destination not found in travel bucket list 
     }
 
     // REQUIRES: specified destination to exist in travel bucket list
     // MODIFIES: this
     // EFFECTS: marks specified destination as visited
-    public void markAsVisited(String location) {
-        boolean found = false;
+    public boolean markAsVisited(String location) {
         for (Destination destination : destinations) {
-            if (destination.getDestination().equals(location)){
+            if (destination.getDestination().equals(location)) {
                 destination.markAsVisited();
-                found = true;                    // Mark that the specified destination was found
-                break;                           // Exit loop once specified destinationw as marked as visited  
+                return true;                       // Successfully marked destination as visited
             }
         }
+        return false;                              // Destination not found in travel bucket list
     }
 
 
     // EFFECTS: view all destinations in travel bucket list
     public List<Destination> getDestinations() {
-        return destinations;
+        return new ArrayList<Destination>(destinations);
     }
 
     public String getTitle() {
