@@ -6,15 +6,17 @@ import java.util.List;
 import model.exceptions.ExcessDestinationException;
 import model.exceptions.IllegalDestinationException;
 
-// A class representing a travel bucket list having a list of destinations and a maximum number of destinations
+// A class representing a travel bucket list having a title, list of destinations and a maximum number of destinations
 public class TravelBucketList {
+    public String title;                              // Travel bucket list title 
     public List<Destination> destinations;            // List of destinations (location names)
     public static final int MAX_DESTINATIONS = 30;    // Constraint: maximum of 30 destinations in bucket list
 
     // MODIFIES: this
     // EFFECTS: constructs a travel bucket list to store a list of destinations
-    public TravelBucketList() {
-        // this.destinations = new ArrayList<>();
+    public TravelBucketList(String title, Destination initialDestination) {
+        this.title = title;
+        this.destinations = new ArrayList<>();
     }
     
     // REQUIRES: destinations should not be null or empty 
@@ -64,7 +66,11 @@ public class TravelBucketList {
 
     // EFFECTS: view all destinations in travel bucket list
     public List<Destination> getDestinations() {
-        // return new ArrayList<>(destinations);
+        return new ArrayList<>(destinations);
+    }
+
+    public String getTitle() {
+        return title;
     }
 
 }

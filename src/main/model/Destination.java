@@ -31,6 +31,6 @@ public class Destination {
     // MODIFIES: this
     // EFFECTS: returns a specified destination with status visited or not yet visited
     public String toString() {
-        return destination + (visitStatus ? "Visited" : "Not yet visited");
+        return destination + (visitStatus ? " (Visited)" : " (Not yet visited)");
     }
 }
