@@ -43,9 +43,12 @@ public class TravelBucketList {
     // MODIFIES: this
     // EFFECTS: marks specified destination as visited
     public void markAsVisited(String location) {
+        boolean found = false;
         for (Destination destination : destinations) {
             if (destination.getDestination().equals(location)){
                 destination.markAsVisited();
+                found = true;                    // Mark that the specified destination was found
+                break;                           // Exit loop once specified destinationw as marked as visited  
             }
         }
     }
@@ -53,7 +56,7 @@ public class TravelBucketList {
 
     // EFFECTS: view all destinations in travel bucket list
     public List<Destination> getDestinations() {
-        return new ArrayList<>(destinations);
+        return destinations;
     }
 
     public String getTitle() {

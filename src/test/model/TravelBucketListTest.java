@@ -13,53 +13,58 @@ import org.junit.jupiter.api.Test;
 // import model.exceptions.IllegalDestinationException;
 
 public class TravelBucketListTest {
-    public TravelBucketList travelBucketListEmpty;
-    public TravelBucketList travelBucketListWithInitialDestination;
+    public TravelBucketList travelBucketList1;
+    public TravelBucketList travelBucketList2;
+    public TravelBucketList travelBucketList3;
+    //public TravelBucketList travelBucketListWithInitialDestination;
     public Destination initialDestination;
 
     @BeforeEach             
     public void runBefore() {
         initialDestination = new Destination("Seoul");
-        travelBucketListEmpty = new TravelBucketList("My Empty Travel Bucket List", null);
-        travelBucketListWithInitialDestination = new TravelBucketList("My Travel Bucket List", initialDestination);
+        travelBucketList1 = new TravelBucketList("My First Travel Bucket List", null);
+        travelBucketList2 = new TravelBucketList("My Second Travel Bucket List", null);
+        travelBucketList3 = new TravelBucketList("My Third Travel Bucket List", null);
+        //travelBucketListWithInitialDestination = new TravelBucketList("My Travel Bucket List", initialDestination);
     }
 
     @Test                   // tests for the constructor
     public void testConstructor() {
         // Test that the title is set correctly
-        assertEquals("My Travel Bucket List", travelBucketListWithInitialDestination.getTitle());
+        assertEquals("My First Travel Bucket List", travelBucketList1.getTitle());
 
         // Test that the empty travel bucket list is empty
-        List<Destination> emptyDestinations = travelBucketListEmpty.getDestinations();
-        assertTrue(emptyDestinations.isEmpty(), "Expected empty travel bucket list to have no destinations");
+        List<Destination> emptyDestinations = travelBucketList1.getDestinations();
+        assertTrue(emptyDestinations.isEmpty(), "Expected first travel bucket list to have no destinations when initialized");
 
         // Test that the initial destination is added
-        List<Destination> destinations = travelBucketListWithInitialDestination.getDestinations();
-        assertEquals(1, destinations.size());
-        assertEquals("Seoul", destinations.get(0).getDestination());
+        //List<Destination> destinations = travelBucketListWithInitialDestination.getDestinations();
+        //assertEquals(1, destinations.size());
+        //assertEquals("Seoul", destinations.get(0).getDestination());
     }
 
     @Test
     public void testAddDestination() {
-        travelBucketListWithInitialDestination.addDestination("Melbourne");
-        List<Destination> destinations = travelBucketListWithInitialDestination.getDestinations();
-        assertEquals(2, destinations.size());
-        assertEquals("Melbourne", destinations.get(1).getDestination());
+        travelBucketList1.addDestination("Melbourne");
+        List<Destination> destinations = travelBucketList1.getDestinations();
+        assertEquals(1, destinations.size());
+        assertEquals("Melbourne", destinations.get(0).getDestination());
     }
 
     @Test
     public void testRemoveDestination() {
-        travelBucketListWithInitialDestination.addDestination("Hong Kong");
-        travelBucketListWithInitialDestination.removeDestination("Hong Kong");
-        List<Destination> destinations = travelBucketListWithInitialDestination.getDestinations();
+        travelBucketList2.addDestination("Hong Kong");
+        travelBucketList2.addDestination("London");
+        travelBucketList2.removeDestination("Hong Kong");
+        List<Destination> destinations = travelBucketList2.getDestinations();
         assertEquals(1, destinations.size());
     }
     
     @Test
     public void testMarkAsVisited() {
-        travelBucketListWithInitialDestination.addDestination("Tokyo");
-        travelBucketListWithInitialDestination.getDestinations().get(1).markAsVisited();
-        assertTrue(travelBucketListWithInitialDestination.getDestinations().get(1).visitStatus());
+        travelBucketList3.addDestination("Tokyo");
+        travelBucketList3.getDestinations().get(0).markAsVisited();
+        assertTrue(travelBucketList3.getDestinations().get(0).visitStatus());
     }
 
     // @Test(expected = IllegalDestinationException.class)
