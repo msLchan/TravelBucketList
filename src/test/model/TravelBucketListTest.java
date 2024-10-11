@@ -12,6 +12,7 @@ public class TravelBucketListTest {
     public TravelBucketList travelBucketList1;
     public TravelBucketList travelBucketList2;
     public TravelBucketList travelBucketList3;
+    public TravelBucketList travelBucketList4;
     public Destination initialDestination;
 
     @BeforeEach             
@@ -20,6 +21,7 @@ public class TravelBucketListTest {
         travelBucketList1 = new TravelBucketList("My First Travel Bucket List", null);
         travelBucketList2 = new TravelBucketList("My Second Travel Bucket List", null);
         travelBucketList3 = new TravelBucketList("My Third Travel Bucket List", null);
+        travelBucketList4 = new TravelBucketList("My Fourth Travel Bucket List", null);
     }
 
     @Test                   // tests for the constructor
@@ -55,9 +57,4 @@ public class TravelBucketListTest {
         travelBucketList3.getDestinations().get(0).markAsVisited();
         assertTrue(travelBucketList3.getDestinations().get(0).visitStatus());
     }
-
-    // @Test(expected = IllegalDestinationException.class)
-    // public void testRemoveNonExistentDestination() throws IllegalDestinationException {
-    //     travelBucketListWithInitialDestination.removeDestination("Nonexistent");
-    // }
 }
