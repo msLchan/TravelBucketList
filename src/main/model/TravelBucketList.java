@@ -3,9 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.exceptions.ExcessDestinationException;
-import model.exceptions.IllegalDestinationException;
-
 // A class representing a travel bucket list having a title, list of destinations and a maximum number of destinations
 public class TravelBucketList {
     public String title;                              // Travel bucket list title 
@@ -24,43 +21,33 @@ public class TravelBucketList {
     //           list may not exceed 30 destinations
     // MODIFIES: this
     // EFFECTS: adds one new destination to list
-    public void addDestination(String location) throws IllegalDestinationException, ExcessDestinationException {
-        // if (location == null || location.isEmpty()) {
-        //     throw new IllegalDestinationException("Destination can not be null or empty");
-        // }
-        // if (destinations.size() >= MAX_DESTINATIONS) {
-        //     throw new ExcessDestinationException("Can not add more than " + MAX_DESTINATIONS + " destinations to the travel bucket list.");
-        // }
-        // destinations.add(new Destination(location));
+    public void addDestination(String location) {
+        destinations.add(new Destination(location));
     }
 
 
     // REQUIRES: specified destination must exist in list 
     // MODIFIES: this
     // EFFECTS: removes specified destination
-    public void removeDestination(String location) throws IllegalDestinationException {
-        // Destination toRemove = null;
-        // for (Destination destination : destinations) {
-        //     if (destination.getDestination().equals(location)){
-        //         toRemove = destination;
-        //     }
-        // }
-        // if (toRemove == null) {
-        //     throw new IllegalDestinationException("Destination does not exist in the travel bucket list.");
-        // }
-        // destinations.remove(toRemove);   
+    public void removeDestination(String location) {
+        Destination toRemove = null;
+        for (Destination destination : destinations) {
+            if (destination.getDestination().equals(location)){
+                toRemove = destination;
+            }
+        }
+        destinations.remove(toRemove);   
     }
 
     // REQUIRES: specified destination to exist in travel bucket list
     // MODIFIES: this
     // EFFECTS: marks specified destination as visited
-    public void markAsVisited(String location) throws IllegalDestinationException {
-        // for (Destination destination : destinations) {
-        //     if (destination.getDestination().equals(location)){
-        //         destination.markAsVisited();
-        //     }
-        // }
-        // throw new IllegalDestinationException("Destination does not exist in the travel bucket list.");
+    public void markAsVisited(String location) {
+        for (Destination destination : destinations) {
+            if (destination.getDestination().equals(location)){
+                destination.markAsVisited();
+            }
+        }
     }
 
 

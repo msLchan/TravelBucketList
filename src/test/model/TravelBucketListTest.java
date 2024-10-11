@@ -2,15 +2,15 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+// import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.exceptions.IllegalDestinationException;
+// import model.exceptions.IllegalDestinationException;
 
 public class TravelBucketListTest {
     public TravelBucketList travelBucketListEmpty;
@@ -41,40 +41,25 @@ public class TravelBucketListTest {
 
     @Test
     public void testAddDestination() {
-        try {
-            travelBucketListWithInitialDestination.addDestination("Melbourne");
-            List<Destination> destinations = travelBucketListWithInitialDestination.getDestinations();
-            assertEquals(2, destinations.size());
-            assertEquals("Melbourne", destinations.get(1).getDestination());
-        }
-        catch (IllegalDestinationException e) {
-            fail("Exception should not have been thrown");
-        }
+        travelBucketListWithInitialDestination.addDestination("Melbourne");
+        List<Destination> destinations = travelBucketListWithInitialDestination.getDestinations();
+        assertEquals(2, destinations.size());
+        assertEquals("Melbourne", destinations.get(1).getDestination());
     }
 
     @Test
     public void testRemoveDestination() {
-        try {
-            travelBucketListWithInitialDestination.addDestination("Hong Kong");
-            travelBucketListWithInitialDestination.removeDestination("Hong Kong");
-            List<Destination> destinations = travelBucketListWithInitialDestination.getDestinations();
-            assertEquals(1, destinations.size());
-        }
-        catch (IllegalDestinationException e) {
-            fail("Exception should not have been thrown");
-        }
+        travelBucketListWithInitialDestination.addDestination("Hong Kong");
+        travelBucketListWithInitialDestination.removeDestination("Hong Kong");
+        List<Destination> destinations = travelBucketListWithInitialDestination.getDestinations();
+        assertEquals(1, destinations.size());
     }
-
+    
     @Test
     public void testMarkAsVisited() {
-        try {
-            travelBucketListWithInitialDestination.addDestination("Tokyo");
-            travelBucketListWithInitialDestination.getDestinations().get(1).markAsVisited();
-            assertTrue(travelBucketListWithInitialDestination.getDestinations().get(1).markAsVisited());
-        }
-        catch (IllegalDestinationException e) {
-            fail("Exception should not have been thrown.");
-        }
+        travelBucketListWithInitialDestination.addDestination("Tokyo");
+        travelBucketListWithInitialDestination.getDestinations().get(1).markAsVisited();
+        assertTrue(travelBucketListWithInitialDestination.getDestinations().get(1).visitStatus());
     }
 
     // @Test(expected = IllegalDestinationException.class)
