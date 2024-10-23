@@ -20,3 +20,5 @@ This project is of interest to me because I love travelling and would like to do
 - As a user, I want to be able to view my travel bucket list so that I can see all the destinations I want to explore
 - As a user, I want to be able to delete locations so that I can keep my list up to date with my current interests
 - As a user, I want to be able to mark destinations as visited so that I can keep track of my travels
+- As a user, I want to have to option to save my travel bucket list to file
+- As a user, I want to be able to load my travel bucket list from file amd resume where I left off previously
