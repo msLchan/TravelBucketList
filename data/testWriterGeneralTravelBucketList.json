@@ -1,0 +1,14 @@
+{
+    "destinations": [
+        {
+            "destination": "Hong Kong"
+        },
+        {
+            "destination": "Bali"
+        },
+        {
+            "destination": "Phuket"
+        }
+    ],
+    "name": "My General Travel Bucket List"
+}
