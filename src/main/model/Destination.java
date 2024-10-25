@@ -12,7 +12,7 @@ public class Destination {
         this.visitStatus = false;
     }
 
-    public static String getDestination() {
+    public String getDestination() {
         return destination;
     }
 
