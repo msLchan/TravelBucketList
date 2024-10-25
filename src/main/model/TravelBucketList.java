@@ -5,9 +5,10 @@ import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import persistence.Writable;
 
 // A class representing a travel bucket list having a title, list of destinations and a maximum number of destinations
-public class TravelBucketList {
+public class TravelBucketList implements Writable {
     public String title;                              // Travel bucket list title 
     public List<Destination> destinations;            // List of destinations (location names)
     public static final int MAX_DESTINATIONS = 30;    // Constraint: maximum of 30 destinations in bucket list
@@ -61,6 +62,11 @@ public class TravelBucketList {
         return new ArrayList<Destination>(destinations);
     }
 
+    // EFFECTS: returns number of destinations in travel bucket list
+    public int numDestinations() {
+        return destinations.size();
+    }
+
     public String getTitle() {
         return title;
     }
@@ -73,7 +79,7 @@ public class TravelBucketList {
     }
 
     // EFFECTS: returns things in this TravelBucketList as a JSON array
-    private JSONArray DestinationsToJson() {
+    private JSONArray destinationsToJson() {
         JSONArray jsonArray = new JSONArray();
 
         for (Destination d : destinations) {

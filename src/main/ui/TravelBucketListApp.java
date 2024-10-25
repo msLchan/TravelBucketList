@@ -3,19 +3,31 @@ package ui;
 import model.TravelBucketList;
 import model.Destination;
 
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
+import model.FileNotFoundException;
+import java.io.IOException;
+
 import java.util.List;
 // Note: this code is adapted from the TellerApp example provided to the class 
 import java.util.Scanner;
 
 // Travel Bucket List Application
 public class TravelBucketListApp {
+    private static final String JSON_STORE = "./data/travelbucketlist.json";
     private TravelBucketList travelBucketList;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
-    // EFFECTS: runs the travel bucket list application
-    public TravelBucketListApp() {
+    // EFFECTS: constructs travel bucket list and runs the application
+    public TravelBucketListApp() throws FileNotFoundException {
         travelBucketList = new TravelBucketList("My Travel Bucket List", null);
         input = new Scanner(System.in);
+        travelBucketList = new TravelBucketList("My Travel Bucket List", null);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);        
         runTravelBucketList();
     }
 
@@ -24,6 +36,7 @@ public class TravelBucketListApp {
     private void runTravelBucketList() {
         boolean keepGoing = true;
         String command = null;
+        input = new Scanner(System.in);
 
         init();
 
@@ -53,6 +66,10 @@ public class TravelBucketListApp {
             markAsVisited();
         } else if (command.equals("g")) {
             getDestinations();
+        } else if (command.equals("l")) {
+            loadTravelBucketList();
+        } else if (command.equals("s")) {
+            saveTravelBucketList();
         } else {
             System.out.println("Selection not valid. Please try again.");
         }
@@ -72,6 +89,8 @@ public class TravelBucketListApp {
         System.out.println("\tr -> remove destination");
         System.out.println("\tv -> mark as visited");
         System.out.println("\tg -> get list of destinations");
+        System.out.println("\tl -> load travel bucket list from file");
+        System.out.println("\ts -> save travel bucket list to file");
         System.out.println("\tq -> quit");
     }
 
@@ -126,4 +145,32 @@ public class TravelBucketListApp {
             }
         }
     }
+
+    // MODIFIES: this
+    // EFFECTS: loads travel bucket list from saved file and populates 
+    // if file doesn't exist or cannot be read, an IO Exception will be thrown
+    private void loadTravelBucketList() throws FileNotFoundException, IOException {
+        try {
+            travelBucketList = jsonReader.read();
+            System.out.println("Loaded " travelBucketList.getDestinations() + " from " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to load destinations from " + JSON_STORE);
+        } 
+    }
+
+    // MODIFIES: external file (JSON_STORE)
+    // EFFECTS: saves the current state of the travel bucket list to file
+    private void saveTravelBucketList() {
+        try {
+            JsonWriter.open();
+            JsonWriter.write(TravelBucketList);
+            jsonWriter.close();
+            System.out.println("Saved " + TravelBucketList.getDestinations() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to save destinations to " + JSON_STORE);
+        }
+
+    }
+
+
 }

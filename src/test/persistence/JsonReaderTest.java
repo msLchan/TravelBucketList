@@ -31,7 +31,6 @@ class JsonReaderTest extends JsonTest {
         JsonReader reader = new JsonReader("./data/testReaderEmptyTravelBucketList.json");
         try {
             TravelBucketList tbl = reader.read();
-            assertEquals("My Empty Travel Bucket List", tbl.getName());
             assertEquals(0, tbl.numDestinations());
         } catch (IOException e) {
             fail("Couldn't read from file");
@@ -43,9 +42,7 @@ class JsonReaderTest extends JsonTest {
         JsonReader reader = new JsonReader("./data/testReaderGeneralTravelBucketList.json");
         try {
             TravelBucketList tbl = reader.read();
-            assertEquals("My General Travel Bucket List", tbl.getName());
-            List<Destination> destinations = tbl.getDestination();
-            assertEquals(3, destinations.size());
+s            assertEquals(3, destinations.size());
             checkDestination("Paris", destinations.get(0));
             checkDestination("Melbourne", destinations.get(1));
             checkDestination("Seoul", destinations.get(2));

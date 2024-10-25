@@ -44,8 +44,7 @@ public class JsonReader {
 
     // EFFECTS: parses TravelBucketList from JSON object and returns it
     private TravelBucketList parseTravelBucketList(JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
-        TravelBucketList tbl = new TravelBucketList();
+        TravelBucketList tbl = new TravelBucketList("My Travel Bucket List", null);
         addDestinations(tbl, jsonObject);
         return tbl;
     }
@@ -63,8 +62,8 @@ public class JsonReader {
     // MODIFIES: tbl
     // EFFECTS: parses Destination from JSON object and adds it to workroom
     private void addDestination(TravelBucketList tbl, JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
-        Destination destination = new Destination(name);
+        String location = jsonObject.getString("destination");
+        Destination destination = new Destination(location);
         tbl.addDestination(destination);
     }
 

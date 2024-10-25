@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // A class representing a destination and visit status
-public class Destination {
+public class Destination implements Writable {
     public String destination;         // destination - location user wishes to travel to
     public boolean visitStatus;        // visited or not yet visited
 

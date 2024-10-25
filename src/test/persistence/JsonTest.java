@@ -8,8 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 // Note: this code is adapted from the provided example JsonSerializationDemo
 
 public class JsonTest {
-    protected void checkDestination(String destination) {
-        assertEquals(destination, Destination.getDestination());
+    protected void checkDestination(Destination destination, String locationName) {
+        assertEquals(locationName, destination.getDestination());
     }
 
 }
