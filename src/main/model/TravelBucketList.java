@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 // A class representing a travel bucket list having a title, list of destinations and a maximum number of destinations
 public class TravelBucketList {
     public String title;                              // Travel bucket list title 
@@ -60,6 +63,24 @@ public class TravelBucketList {
 
     public String getTitle() {
         return title;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("destinations", destinationsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this TravelBucketList as a JSON array
+    private JSONArray DestinationsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Destination d : destinations) {
+            jsonArray.put(d.toJson());
+        }
+
+        return jsonArray;
     }
 
 }

@@ -33,4 +33,12 @@ public class Destination {
     public String toString() {
         return destination + (visitStatus ? " (Visited)" : " (Not yet visited)");
     }
+
+    // EFFECTS: converts destination object into JSON object
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("destination", destination);
+        return json;
+    }
 }
