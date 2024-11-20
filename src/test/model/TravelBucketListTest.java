@@ -2,9 +2,12 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -52,9 +55,62 @@ public class TravelBucketListTest {
     }
     
     @Test
+    public void testRemoveNonExistentDestination() {
+        assertFalse(travelBucketList1.removeDestination("Rome"));
+    }
+
+    @Test
     public void testMarkAsVisited() {
         travelBucketList3.addDestination("Tokyo");
         travelBucketList3.getDestinations().get(0).markAsVisited();
         assertTrue(travelBucketList3.getDestinations().get(0).visitStatus());
+    }
+
+    @Test
+    public void testMarkNonExistentAsVisited() {
+        assertFalse(travelBucketList2.markAsVisited("Rome"));
+    }
+
+    @Test
+    public void testGetDestinations() {
+        travelBucketList1.addDestination("Paris");
+        travelBucketList1.addDestination("Tokyo");
+        List<Destination> destinations = travelBucketList1.getDestinations();
+        assertEquals(2, destinations.size());
+        assertEquals("Paris", destinations.get(0).getDestination());
+        assertEquals("Tokyo", destinations.get(1).getDestination());
+    }
+
+    @Test
+    public void testNumDestinations() {
+        assertEquals(0, travelBucketList1.numDestinations());
+        travelBucketList1.addDestination("New York");
+        assertEquals(1, travelBucketList1.numDestinations());
+        travelBucketList1.addDestination("Chicago");
+        assertEquals(2, travelBucketList1.numDestinations());
+        travelBucketList1.removeDestination("New York");
+        assertEquals(1, travelBucketList1.numDestinations());
+    }
+
+    @Test
+    public void testToJson() {
+        travelBucketList2.addDestination("Florida");
+        travelBucketList2.addDestination("Yukon");
+        JSONObject json = travelBucketList2.toJson();
+        JSONArray destinationsJson = json.getJSONArray("destinations");
+        assertEquals(2, destinationsJson.length());
+        assertEquals("Florida", destinationsJson.getJSONObject(0). getString("destination"));
+        assertEquals("Yukon", destinationsJson.getJSONObject(1). getString("destination"));
+    }
+
+    @Test
+    public void testDestinationsToJson() {
+        travelBucketList3.addDestination("Narita");
+        travelBucketList3.addDestination("Haneda");
+        JSONObject json = travelBucketList3.toJson();
+        JSONArray destinationsJson = json.getJSONArray("destinations");
+        assertEquals(2, destinationsJson.length());
+        assertEquals("Narita", destinationsJson.getJSONObject(0). getString("destination"));
+        assertEquals("Haneda", destinationsJson.getJSONObject(1). getString("destination"));
     }
 }

@@ -1,7 +1,10 @@
 package persistence;
 
-import model.Destination;
 import model.TravelBucketList;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 import org.json.JSONObject;
 import java.io.*;
@@ -13,10 +16,12 @@ public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
     private String destination;
+    private boolean isOpen;
 
     // EFFECTS: constructs writer to write to destination file
     public JsonWriter(String destination) {
         this.destination = destination;
+        this.isOpen = false;
     }
 
     // MODIFIES: this
@@ -24,25 +29,32 @@ public class JsonWriter {
     // be opened for writing
     public void open() throws FileNotFoundException {
         writer = new PrintWriter(new File(destination));
+        isOpen = true;
     }
 
     // MODIFIES: this
     // EFFECTS: writes JSON representation of TravelBucketList to file
     public void write(TravelBucketList tbl) {
+        if (!isOpen) {
+            throw new IllegalStateException("Writer must be opened before writing.");
+        }
         JSONObject json = tbl.toJson();
-        saveToFile(json.toString(TAB));
+        writer.print(json.toString(TAB));
     }
 
     // MODIFIES: this
     // EFFECTS: closes writer
     public void close() {
-        writer.close();
+        if (isOpen) {
+            writer.close();
+            isOpen = false;
+        }
     }
 
-    // MODIFIES: this
-    // EFFECTS: writes string to file
-    private void saveToFile(String json) {
-        writer.print(json);
-    }
+    // // MODIFIES: this
+    // // EFFECTS: writes string to file
+    // private void saveToFile(String json) {
+    //     writer.print(json);
+    // }
 
 }

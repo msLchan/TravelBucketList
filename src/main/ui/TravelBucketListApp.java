@@ -152,8 +152,8 @@ public class TravelBucketListApp {
     private void loadTravelBucketList() throws FileNotFoundException, IOException {
         try {
             travelBucketList = jsonReader.read();
-            System.out.println("Loaded " travelBucketList.getDestinations() + " from " + JSON_STORE);
-        } catch (FileNotFoundException e) {
+            System.out.println("Loaded " travelBucketList.getTitle() + " from " + JSON_STORE);
+        } catch (IOException e) {
             System.out.println("Unable to load destinations from " + JSON_STORE);
         } 
     }
@@ -162,10 +162,10 @@ public class TravelBucketListApp {
     // EFFECTS: saves the current state of the travel bucket list to file
     private void saveTravelBucketList() {
         try {
-            JsonWriter.open();
-            JsonWriter.write(TravelBucketList);
+            jsonWriter.open();
+            jsonWriter.write(travelBucketList);
             jsonWriter.close();
-            System.out.println("Saved " + TravelBucketList.getDestinations() + " to " + JSON_STORE);
+            System.out.println("Saved " + TravelBucketList.getTitle() + " to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to save destinations to " + JSON_STORE);
         }

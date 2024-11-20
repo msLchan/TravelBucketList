@@ -3,6 +3,7 @@ package persistence;
 import model.Destination;
 import model.TravelBucketList;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -10,7 +11,6 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 import org.json.*;
-import org.junit.experimental.categories.Category;
 
 // Note: this code is adapted from the provided example JsonSerializationDemo
 
@@ -37,6 +37,8 @@ public class JsonReader {
 
         try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s));
+        } catch (IOException e) {
+            throw new FileNotFoundException("File not found: " + source);
         }
 
         return contentBuilder.toString();
@@ -44,6 +46,7 @@ public class JsonReader {
 
     // EFFECTS: parses TravelBucketList from JSON object and returns it
     private TravelBucketList parseTravelBucketList(JSONObject jsonObject) {
+        String title = jsonObject.getString("name");
         TravelBucketList tbl = new TravelBucketList("My Travel Bucket List", null);
         addDestinations(tbl, jsonObject);
         return tbl;
@@ -52,19 +55,19 @@ public class JsonReader {
     // MODIFIES: tbl
     // EFFECTS: parses Destinations from JSON object and adds them to TravelBucketList
     private void addDestinations(TravelBucketList tbl, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("destinations");
-        for (Object json : jsonArray) {
-            JSONObject nextDestination = (JSONObject) json;
-            addDestination(tbl, nextDestination);
+        JSONArray destinationsArray = jsonObject.getJSONArray("destinations");
+        for (Object destinationObj : destinationsArray) {
+            JSONObject destinationJson = (JSONObject) destinationObj;
+            String name = destinationJson.getString("destination");
+            boolean visited = destinationJson.optBoolean("visitStatus", false);
+
+            Destination destination = new Destination(name);
+            if (visited) {
+                destination.markAsVisited();
+            }
+            tbl.getDestinations().add(destination);
+            // tbl.addDestination(name);
+            // tbl.getDestinations().get(tbl.numDestinations() - 1).markAsVisited();
         }
-    }
-
-    // MODIFIES: tbl
-    // EFFECTS: parses Destination from JSON object and adds it to workroom
-    private void addDestination(TravelBucketList tbl, JSONObject jsonObject) {
-        String location = jsonObject.getString("destination");
-        Destination destination = new Destination(location);
-        tbl.addDestination(destination);
-    }
-
+    }    
 }

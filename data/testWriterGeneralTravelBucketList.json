@@ -1,14 +1,17 @@
 {
+    "name": "My General Travel Bucket List",
     "destinations": [
         {
-            "destination": "Hong Kong"
+            "destination": "Hong Kong",
+            "visitStatus": false
         },
         {
-            "destination": "Bali"
+            "destination": "Bali",
+            "visitStatus": false
         },
         {
-            "destination": "Phuket"
+            "destination": "Phuket",
+            "visitStatus": true
         }
-    ],
-    "name": "My General Travel Bucket List"
+    ]
 }

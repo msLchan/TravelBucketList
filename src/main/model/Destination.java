@@ -42,6 +42,7 @@ public class Destination implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("destination", destination);
+        json.put("visitStatus", visitStatus);
         return json;
     }
 }

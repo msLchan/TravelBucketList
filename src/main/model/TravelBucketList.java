@@ -59,7 +59,7 @@ public class TravelBucketList implements Writable {
 
     // EFFECTS: view all destinations in travel bucket list
     public List<Destination> getDestinations() {
-        return new ArrayList<Destination>(destinations);
+        return destinations;
     }
 
     // EFFECTS: returns number of destinations in travel bucket list
@@ -74,6 +74,7 @@ public class TravelBucketList implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
+        json.put("title", title);
         json.put("destinations", destinationsToJson());
         return json;
     }

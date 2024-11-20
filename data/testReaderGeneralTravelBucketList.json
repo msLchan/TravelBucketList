@@ -1,14 +1,17 @@
 {
+    "name": "My General Travel Bucket List",
     "destinations": [
         {
-            "destination": "Paris"
+            "destination": "Paris",
+            "visitStatus": false
         },
         {
-            "destination": "Melbourne"
+            "destination": "Melbourne",
+            "visitStatus": true
         },
         {
-            "destination": "Seoul"
+            "destination": "Seoul",
+            "visitStatus": false
         }
-    ],
-    "name": "My General Travel Bucket List"
+    ]
 }
