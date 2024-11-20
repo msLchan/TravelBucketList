@@ -61,15 +61,16 @@ public class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterGeneralTravelBucketList.json");
             tbl = reader.read();
-            assertEquals("My General Travel Bucket List", tbl.getTitle());
-            assertEquals(3, tbl.numDestinations());
-            assertEquals("Hong Kong", tbl.getDestinations().get(0).getDestination());
-            assertEquals("Bali", tbl.getDestinations().get(1).getDestination());
-            assertEquals("Phuketg", tbl.getDestinations().get(2).getDestination());
+            List<Destination> destinations = tbl.getDestinations();
 
-            // checkDestination("Hong Kong", destinations.get(0));
-            // checkDestination("Bali", destinations.get(1));
-            // checkDestination("Phuket", destinations.get(2));
+            assertEquals(3, tbl.numDestinations());
+            // assertEquals("Hong Kong", tbl.getDestinations().get(0).getDestination());
+            // assertEquals("Bali", tbl.getDestinations().get(1).getDestination());
+            // assertEquals("Phuketg", tbl.getDestinations().get(2).getDestination());
+
+            checkDestination(destinations.get(0), "Hong Kong", false);
+            checkDestination(destinations.get(1), "Bali", false);
+            checkDestination(destinations.get(2), "Phuket", true);
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

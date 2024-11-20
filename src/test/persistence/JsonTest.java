@@ -12,4 +12,9 @@ public class JsonTest {
         assertEquals(locationName, destination.getDestination());
     }
 
+    protected void checkDestination(Destination destination, String locationName, boolean visitStatus) {
+        assertEquals(locationName, destination.getDestination());
+        assertEquals(visitStatus, destination.visitStatus());
+    }
+
 }
