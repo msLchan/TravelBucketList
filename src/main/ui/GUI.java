@@ -13,19 +13,36 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.event.*;
 
-// Note: this code is adapted from the ListDemo examples recommended to the class on oracle: 
+// Note: this code is adapted from the ListDemo examples recommended to the class and oracle tutorials: 
 // https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ListDemoProject/src/components/ListDemo.java
 
 public class GUI {
+    private static final String JSON_STORE = "./data/travelbucketlist.json";
+    private TravelBucketList travelBucketList;
+    private DefaultListModel<String> listModel;
+    private JList<String> destinationList;
+    private JsonReader jsonReader;
+    private JsonWriter jsonWriter;
 
     // EFFECTS: constructs the GUI, initializes the travel bucket list and sets up persistence
     public GUI() {
-
+        travelBucketList = new TravelBucketList("My Travel Bucket List", null);
+        jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        listModel = new DefaultListModel<>();
+        createAndShowGUI();
     }
 
     // MODIFIES: this
     // EFFECTS: initializes and displays main application GUI
     private void createAndShowGUI() {
+        //Create and set up the window.
+        JFrame frame = new JFrame("Travel Bucket List");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 300);
+
+        destinationList = new JList<>(listModel);
+        JScrollPane scrollPane = new JScrollPane(destinationList);
 
     }
 
@@ -77,7 +94,7 @@ public class GUI {
 
     // EFFECTS: starts the GUI application and shows the splash screen
     public static void main(String[] args) {
-        
+
     }
 
 }
