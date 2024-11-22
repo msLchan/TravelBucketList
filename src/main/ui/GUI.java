@@ -19,7 +19,6 @@ import javax.swing.*;
 
 public class GUI {
     private static final String JSON_STORE = "./data/travelbucketlist.json";
-    private static final String SPLASH_IMAGE_PATH = "./image/travelsplash_image.png";
     private TravelBucketList travelBucketList;
     private DefaultListModel<String> listModel;
     private JList<String> destinationList;
@@ -37,6 +36,7 @@ public class GUI {
 
     // MODIFIES: this
     // EFFECTS: initializes and displays main application GUI
+    @SuppressWarnings("methodlength")
     private void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("Travel Bucket List");
