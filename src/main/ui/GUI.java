@@ -14,8 +14,12 @@ import javax.swing.*;
 // Note: this code is adapted from the ListDemo examples recommended to the class and oracle tutorials: 
 // https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ListDemoProject/src/components/ListDemo.java
 
+// Splash image credits: https://unsplash.com/photos/white-plane-flying-over-gray-clouds-FwdZYz0yc9g
+// Image is open source photographed by Leio McLaren
+
 public class GUI {
     private static final String JSON_STORE = "./data/travelbucketlist.json";
+    private static final String SPLASH_IMAGE_PATH = "./image/travelsplash_image.png";
     private TravelBucketList travelBucketList;
     private DefaultListModel<String> listModel;
     private JList<String> destinationList;
@@ -37,7 +41,7 @@ public class GUI {
         //Create and set up the window.
         JFrame frame = new JFrame("Travel Bucket List");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 300);
+        frame.setSize(600, 800);
 
         destinationList = new JList<>(listModel);
         JScrollPane scrollPane = new JScrollPane(destinationList);
@@ -103,13 +107,32 @@ public class GUI {
         }
     }
 
+    // REQUIRES: destinationList is not empty
+    // MODIFIES: this
+    // EFFECTS: marks the selected destination as visited and updates the display
+    private void markAsVisited() {
+        int selectedIndex = destinationList.getSelectedIndex();
+        if (selectedIndex != -1) {
+            String destinationName = listModel.get(selectedIndex).split(" \\(")[0];
+            boolean success = travelBucketList.markAsVisited(destinationName);
+            if (success) {
+                listModel.set(selectedIndex, destinationName + " (Visited)");
+                JOptionPane.showMessageDialog(null, destinationName + " marked as visited.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error: Unable to marked as visited.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a destination to marked as visited.");
+        }
+    }
+
     // MODIFIES: this
     // EFFECTS: filters the list to show only destinations that have been visited
     private void filterVisitedDestinations() {
         listModel.clear();
         for (Destination d : travelBucketList.getDestinations()) {
-            if (!d.visitStatus()) {
-                listModel.addElement(d.getDestination() + " (Not Visited)");
+            if (d.visitStatus()) {
+                listModel.addElement(d.getDestination() + " (Visited)");
             }
         }
     }
@@ -119,8 +142,8 @@ public class GUI {
     private void filterNotVisitedDestinations() {
         listModel.clear();
         for (Destination d : travelBucketList.getDestinations()) {
-            if (d.visitStatus()) {
-                listModel.addElement(d.getDestination() + " (Visited)");
+            if (!d.visitStatus()) {
+                listModel.addElement(d.getDestination() + " (Not Visited)");
             }
         }
     }
@@ -159,24 +182,32 @@ public class GUI {
     // EFFECTS: displays a splash screen at application startup
     private static void showSplashScreen() {
         JWindow splash = new JWindow();
-        splash.getContentPane().add(new JLabel(new ImageIcon("travelsplash_image.png")), BorderLayout.CENTER);
-        splash.setSize(300, 200);
+        String imagePath = "./image/travelsplash_image.png";
+        ImageIcon splashImage = new ImageIcon(imagePath);
+
+        JLabel splashLabel = new JLabel(splashImage);
+        splash.getContentPane().add(splashLabel, BorderLayout.CENTER);
+        splash.setSize(splashImage.getIconWidth(), splashImage.getIconHeight());
         splash.setLocationRelativeTo(null);
         splash.setVisible(true);
+
         try {
-            Thread.sleep(2000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         splash.setVisible(false);
+        splash.dispose();       
     }
 
     // EFFECTS: starts the GUI application and shows the splash screen
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new GUI();
+        Thread splashThread = new Thread(() -> {
             showSplashScreen();
+            SwingUtilities.invokeLater(GUI::new);
         });
+        splashThread.start();
     }
 
 }
