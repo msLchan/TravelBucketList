@@ -63,9 +63,6 @@ public class JsonWriterTest extends JsonTest {
             List<Destination> destinations = tbl.getDestinations();
 
             assertEquals(3, tbl.numDestinations());
-            // assertEquals("Hong Kong", tbl.getDestinations().get(0).getDestination());
-            // assertEquals("Bali", tbl.getDestinations().get(1).getDestination());
-            // assertEquals("Phuketg", tbl.getDestinations().get(2).getDestination());
 
             checkDestination(destinations.get(0), "Hong Kong", false);
             checkDestination(destinations.get(1), "Bali", false);
