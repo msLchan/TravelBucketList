@@ -3,7 +3,6 @@ package persistence;
 import model.Destination;
 import model.TravelBucketList;
 
-import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
@@ -22,7 +21,7 @@ public class JsonWriterTest extends JsonTest {
             JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");
             writer.open();
             fail("IOException was expected");
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             // pass - exception is expected
             assertTrue(e instanceof FileNotFoundException);
         }

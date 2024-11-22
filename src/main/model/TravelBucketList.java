@@ -7,11 +7,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-// A class representing a travel bucket list having a title, list of destinations and a maximum number of destinations
+// A class representing a travel bucket list having a title and a list of destinations
 public class TravelBucketList implements Writable {
-    public String title;                              // Travel bucket list title 
-    public List<Destination> destinations;            // List of destinations (location names)
-    public static final int MAX_DESTINATIONS = 30;    // Constraint: maximum of 30 destinations in bucket list
+    private String title;                              // Travel bucket list title 
+    private List<Destination> destinations;            // List of destinations (location names)
+    //private static final int MAX_DESTINATIONS = 30;    // Constraint: maximum of 30 destinations in bucket list
 
     // MODIFIES: this
     // EFFECTS: constructs a travel bucket list to store a list of destinations
@@ -35,7 +35,7 @@ public class TravelBucketList implements Writable {
     // EFFECTS: removes specified destination
     public boolean removeDestination(String location) {
         for (Destination destination : destinations) {
-            if (destination.getDestination().equals(location)){
+            if (destination.getDestination().equals(location)) {
                 destinations.remove(destination);
                 return true;                       // Successfully removed destination
             }

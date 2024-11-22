@@ -3,11 +3,10 @@ package persistence;
 import model.TravelBucketList;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import org.json.JSONObject;
-import java.io.*;
 
 // Note: this code is adapted from the provided example JsonSerializationDemo
 
@@ -25,9 +24,9 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: opens writer; throws FileNotFoundException if destination file cannot
+    // EFFECTS: opens writer; throws IOException if destination file cannot
     // be opened for writing
-    public void open() throws FileNotFoundException {
+    public void open() throws IOException {
         writer = new PrintWriter(new File(destination));
         isOpen = true;
     }

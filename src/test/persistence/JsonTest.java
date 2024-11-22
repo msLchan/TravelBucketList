@@ -1,7 +1,6 @@
 package persistence;
 
 import model.Destination;
-import model.TravelBucketList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

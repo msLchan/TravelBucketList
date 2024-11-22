@@ -3,7 +3,6 @@ package persistence;
 import model.Destination;
 import model.TravelBucketList;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -38,7 +37,7 @@ public class JsonReader {
         try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s));
         } catch (IOException e) {
-            throw new FileNotFoundException("File not found: " + source);
+            throw new IOException("File not found: " + source);
         }
 
         return contentBuilder.toString();
@@ -46,7 +45,7 @@ public class JsonReader {
 
     // EFFECTS: parses TravelBucketList from JSON object and returns it
     private TravelBucketList parseTravelBucketList(JSONObject jsonObject) {
-        String title = jsonObject.getString("name");
+        //String title = jsonObject.getString("name");
         TravelBucketList tbl = new TravelBucketList("My Travel Bucket List", null);
         addDestinations(tbl, jsonObject);
         return tbl;

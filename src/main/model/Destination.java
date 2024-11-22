@@ -5,8 +5,8 @@ import persistence.Writable;
 
 // A class representing a destination and visit status
 public class Destination implements Writable {
-    public String destination;         // destination - location user wishes to travel to
-    public boolean visitStatus;        // visited or not yet visited
+    private String destination;         // destination - location user wishes to travel to
+    private boolean visitStatus;        // visited or not yet visited
 
     // MODIFIES: this
     // EFFECTS: constructs a destination location with a visit status (initializes as not yet visited)
