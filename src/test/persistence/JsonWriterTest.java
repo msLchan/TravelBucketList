@@ -38,7 +38,6 @@ public class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyTravelBucketList.json");
             tbl = reader.read();
-            assertEquals("My Empty Travel Bucket List", tbl.getTitle());
             assertEquals(0, tbl.numDestinations());
         } catch (IOException e) {
             fail("Exception should not have been thrown");

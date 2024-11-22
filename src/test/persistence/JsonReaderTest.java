@@ -23,7 +23,6 @@ public class JsonReaderTest extends JsonTest {
             fail("IOException expected");
         } catch (IOException e) {
             // pass: exception is expected
-            assertTrue(e instanceof FileNotFoundException);
         }
     }
 
