@@ -41,7 +41,7 @@ public class GUI {
         //Create and set up the window.
         JFrame frame = new JFrame("Travel Bucket List");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 800);
+        frame.setSize(700, 800);
 
         destinationList = new JList<>(listModel);
         JScrollPane scrollPane = new JScrollPane(destinationList);
@@ -51,6 +51,7 @@ public class GUI {
         JButton markVisitedButton = new JButton("Mark as Visited");
         JButton filterVisitedButton = new JButton("Filter Visited");
         JButton filterNotVisitedButton = new JButton("Filter Not Visited");
+        JButton showAllButton = new JButton("Show All Destinations");
         JButton saveButton = new JButton("Save");
         JButton loadButton = new JButton("Load");
 
@@ -65,6 +66,7 @@ public class GUI {
         buttonPanel.add(markVisitedButton);
         buttonPanel.add(filterVisitedButton);
         buttonPanel.add(filterNotVisitedButton);
+        buttonPanel.add(showAllButton);
         buttonPanel.add(saveButton);
         buttonPanel.add(loadButton);
         panel.add(buttonPanel, BorderLayout.SOUTH);
@@ -77,6 +79,7 @@ public class GUI {
         markVisitedButton.addActionListener(e -> markAsVisited());
         filterVisitedButton.addActionListener(e -> filterVisitedDestinations());
         filterNotVisitedButton.addActionListener(e -> filterNotVisitedDestinations());
+        showAllButton.addActionListener(e -> showAllDestinations());
         saveButton.addActionListener(e -> saveTravelBucketList());
         loadButton.addActionListener(e -> loadTravelBucketList());
     }
@@ -145,6 +148,15 @@ public class GUI {
             if (!d.visitStatus()) {
                 listModel.addElement(d.getDestination() + " (Not Visited)");
             }
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds all destinations back to the list display after filtering
+    private void showAllDestinations() {
+        listModel.clear();
+        for (Destination d : travelBucketList.getDestinations()) {
+            listModel.addElement(d.getDestination() + (d.visitStatus() ? " (Visited)" : " (Not Visited)"));
         }
     }
 

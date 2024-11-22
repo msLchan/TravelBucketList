@@ -1,14 +1,17 @@
 {
     "destinations": [
         {
-            "destination": "Shanghai"
+            "visitStatus": false,
+            "destination": "paris"
         },
         {
-            "destination": "Osaka"
+            "visitStatus": false,
+            "destination": "london"
         },
         {
-            "destination": "New York"
+            "visitStatus": true,
+            "destination": "hawaii"
         }
     ],
-    "name": "My General Travel Bucket List"
+    "title": "My Travel Bucket List"
 }
