@@ -24,8 +24,30 @@ This project is of interest to me because I love travelling and would like to do
 - As a user, I want to be able to load my travel bucket list from file amd resume where I left off previously
 
 ## Instructions for End User ##
-- You can generate the first required action related to the user story "adding multiple Xs to a Y" by...
+You can generate the first required action related to the user story "adding multiple Xs to a Y" by...
+1. Open the application and wait for the splash screen to disappear
+2. Click the **"Add Destination"** button in the main GUI
+3. A dialog box will appear prompting you to **enter the name of a destination you want to visit**
+4. Type in the name of the destination you want to add and **click OK**
+5. The destination will appear in the list of destinations on the screen, marked as **"(Not Visited)"**
+
 - You can generate the second required action related to the user story "adding multiple Xs to a Y" by...
+1. Select a destination from the list by clicking on it
+2. Click the **"Mark as Visited"** button
+3. The selected destination's status will update to **"(Visited)"** in the list
+4. Repeat for multiple destinations as needed
+
 - You can locate my visual component by...
+1. When starting the application, wait for the **splash screen** to appear
+2. The splash screen will display an airplane flying over a twilight sky located in the **center** of the streen
+3. After 3 seconds, the splash screen will disappear and the main application will load
+
 - You can save the state of my application by...
+1. Click the **"Save"** button in the main GUI
+2. A confirmation message will appear, stating that the current state of your travel bucket list has been saved to a file
+3. The saved file is stored in the **./data/** directory with the name travelbucketlist.json
+
 - You can reload the state of my application by...
+1. Click the **"Load"** button in the main GUI
+2. If the file travelbucketlist.json exists in the **./data/** directory, the application will load its contents
+3. The list of destinations will update to reflect the saved state, showing the destinations and their statuses
