@@ -49,11 +49,4 @@ public class JsonWriter {
             isOpen = false;
         }
     }
-
-    // // MODIFIES: this
-    // // EFFECTS: writes string to file
-    // private void saveToFile(String json) {
-    //     writer.print(json);
-    // }
-
 }

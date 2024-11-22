@@ -10,8 +10,10 @@ import model.FileNotFoundException;
 import java.io.IOException;
 
 import java.util.List;
-// Note: this code is adapted from the TellerApp example provided to the class 
+
 import java.util.Scanner;
+
+// Note: this code is adapted from the TellerApp example provided to the class 
 
 // Travel Bucket List Application
 public class TravelBucketListApp {

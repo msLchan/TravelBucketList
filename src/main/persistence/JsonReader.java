@@ -65,8 +65,6 @@ public class JsonReader {
                 destination.markAsVisited();
             }
             tbl.getDestinations().add(destination);
-            // tbl.addDestination(name);
-            // tbl.getDestinations().get(tbl.numDestinations() - 1).markAsVisited();
         }
     }    
 }
