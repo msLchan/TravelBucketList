@@ -152,10 +152,8 @@ public class GUI {
     // EFFECTS: filters the list to show only destinations that have been visited
     private void filterVisitedDestinations() {
         listModel.clear();
-        for (Destination d : travelBucketList.getDestinations()) {
-            if (d.visitStatus()) {
-                listModel.addElement(d.getDestination() + " (Visited)");
-            }
+        for (Destination d : travelBucketList.filterVisitedDestinations()) {
+            listModel.addElement(d.getDestination() + " (Visited)");
         }
     }
 
@@ -163,10 +161,8 @@ public class GUI {
     // EFFECTS: filters the list to show only destinations that are not yet visited
     private void filterNotVisitedDestinations() {
         listModel.clear();
-        for (Destination d : travelBucketList.getDestinations()) {
-            if (!d.visitStatus()) {
-                listModel.addElement(d.getDestination() + " (Not Visited)");
-            }
+        for (Destination d : travelBucketList.filterNotVisitedDestinations()) {
+            listModel.addElement(d.getDestination() + " (Not Visited)");
         }
     }
 
@@ -174,7 +170,7 @@ public class GUI {
     // EFFECTS: adds all destinations back to the list display after filtering
     private void showAllDestinations() {
         listModel.clear();
-        for (Destination d : travelBucketList.getDestinations()) {
+        for (Destination d : travelBucketList.showAllDestinations()) {
             listModel.addElement(d.getDestination() + (d.visitStatus() ? " (Visited)" : " (Not Visited)"));
         }
     }

@@ -57,6 +57,36 @@ public class TravelBucketList implements Writable {
         return false;                              // Destination not found in travel bucket list
     }
 
+    // EFFECTS: returns a list of destinations that have been visited and logs the event
+    public List<Destination> filterVisitedDestinations() {
+        List<Destination> visited = new ArrayList<>();
+        for (Destination d : destinations) {
+            if (d.visitStatus()) {
+                visited.add(d);
+            }
+        }
+        EventLog.getInstance().logEvent(new Event("Filtered visited destinations from " + title));
+        return visited;
+    }
+
+    // EFFECTS: returns a list of destinations that have not been visited and logs the event
+    public List<Destination> filterNotVisitedDestinations() {
+        List<Destination> notVisited = new ArrayList<>();
+        for (Destination d : destinations) {
+            if (!d.visitStatus()) {
+                notVisited.add(d);
+            }
+        }
+        EventLog.getInstance().logEvent(new Event("Filtered not visited destinations from " + title));
+        return notVisited;
+    }
+
+    // EFFECTS: returns all destinations (after filtering) and logs the event
+    public List<Destination> showAllDestinations() {
+        EventLog.getInstance().logEvent(new Event("Displayed all destinations from " + title));
+        return new ArrayList<>(destinations);
+    }
+
 
     // EFFECTS: view all destinations in travel bucket list
     public List<Destination> getDestinations() {
