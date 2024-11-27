@@ -25,9 +25,10 @@ public class Destination implements Writable {
 
     // REQUIRES: destination should not be null or empty
     // MODIFIES: this
-    // EFFECTS: marks destination as visited 
+    // EFFECTS: marks destination as visited and logs the event
     public void markAsVisited() {
         this.visitStatus = true;
+        //EventLog.getInstance().logEvent(new Event("Marked " + destination + " as visited."));
     }
 
     // REQUIRES: destination should not be null or empty

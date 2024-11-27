@@ -55,7 +55,16 @@ public class TravelBucketListApp {
         }
 
         System.out.println("\nGoodbye. Thanks for using Travel Bucket List!");
+        //printEventLog();
     }
+
+    // private void printEventLog() {
+    //     EventLog eventlog = EventLog.getInstance();
+    //     System.out.println("Event Log:");
+    //     for (model.Event event : eventLog) {
+    //         System.out.println(event.toString());
+    //     }
+    // }
 
     // MODIFIES: this
     // EFFECTS: processes user command

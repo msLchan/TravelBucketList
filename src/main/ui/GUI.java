@@ -1,6 +1,7 @@
 package ui;
 
 import model.Destination;
+import model.EventLog;
 import model.TravelBucketList;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -82,6 +83,24 @@ public class GUI {
         showAllButton.addActionListener(e -> showAllDestinations());
         saveButton.addActionListener(e -> saveTravelBucketList());
         loadButton.addActionListener(e -> loadTravelBucketList());
+
+        // Add a WindowListener to handle application exit
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                printEventLog();
+            }
+        });
+
+        frame.setVisible(true);
+    }
+
+    private void printEventLog() {
+        EventLog eventLog = EventLog.getInstance();
+        System.out.println("Event Log:");
+        for (model.Event event : eventLog) {
+            System.out.println(event.toString());
+        }
     }
 
     // REQUIRES: destination input is not null or empty

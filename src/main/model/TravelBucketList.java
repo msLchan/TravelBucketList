@@ -11,7 +11,6 @@ import persistence.Writable;
 public class TravelBucketList implements Writable {
     private String title;                              // Travel bucket list title 
     private List<Destination> destinations;            // List of destinations (location names)
-    //private static final int MAX_DESTINATIONS = 30;    // Constraint: maximum of 30 destinations in bucket list
 
     // MODIFIES: this
     // EFFECTS: constructs a travel bucket list to store a list of destinations
@@ -22,21 +21,22 @@ public class TravelBucketList implements Writable {
     
     // REQUIRES: destination to add should not be null or empty 
     //           specified destination should not already be in list
-    //           list may not exceed 30 destinations
     // MODIFIES: this
-    // EFFECTS: adds one new destination to list
+    // EFFECTS: adds one new destination to list and logs the event
     public void addDestination(String location) {
         destinations.add(new Destination(location));
+        EventLog.getInstance().logEvent(new Event("Added destination " + location + " to " + title));
     }
 
 
     // REQUIRES: specified destination must exist in list 
     // MODIFIES: this
-    // EFFECTS: removes specified destination
+    // EFFECTS: removes specified destination and logs the event
     public boolean removeDestination(String location) {
         for (Destination destination : destinations) {
             if (destination.getDestination().equals(location)) {
                 destinations.remove(destination);
+                EventLog.getInstance().logEvent(new Event("Removed destination " + location + " from " + title));
                 return true;                       // Successfully removed destination
             }
         }
@@ -50,6 +50,7 @@ public class TravelBucketList implements Writable {
         for (Destination destination : destinations) {
             if (destination.getDestination().equals(location)) {
                 destination.markAsVisited();
+                EventLog.getInstance().logEvent(new Event("Marked " + location + " as visited in " + title));
                 return true;                       // Successfully marked destination as visited
             }
         }
