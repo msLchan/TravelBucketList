@@ -63,9 +63,9 @@ This project is of interest to me because I love travelling and would like to do
 3. The list of destinations will update to reflect the saved state, showing the destinations and their statuses
 
 ## *Phase 4: Task 2* ##
-Below is a representative sample of the events that occur when my program runs:
-Event Log:  
+Below is a representative sample of the events that occur when my program runs.
 
+Event Log:  
 Wed Nov 27 10:09:33 PST 2024  
 Added destination Paris to My Travel Bucket List  
 Wed Nov 27 10:09:36 PST 2024  
@@ -86,3 +86,9 @@ Wed Nov 27 10:10:04 PST 2024
 Displayed all destinations from My Travel Bucket List  
 Wed Nov 27 10:10:06 PST 2024  
 Removed destination Shanghai from My Travel Bucket List
+
+## *Phase 4: Task 3* ##
+**If you had more time to work on the project, what refactoring might you use to improve your design?**
+One of the refactoring changes I would make is to rename methods and variables to improve clarity and consistency in the project. In TravelBucketList, I would rename methods such as markAsVisited and addDestination to markDestinationAsVisited and addNewDestination. For variables like visitStatus in my Destination class, I would rename them to isVisited to better indicate its purpose as a boolean flag.
+
+Another change I would make when refactoring is to extract repeated code into helper methods. In my UI classes, the code for clearing the listModel and iterating over destinations appears in multiple methods for filtering and displaying lists. Instead, I would extract the repetitive code into a single method that would make the code more concise and avoid repetition. This would also make it easier to update, display, and improve maintainability as it could all be done in one place. 
