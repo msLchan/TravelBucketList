@@ -67,41 +67,22 @@ Below is a representative sample of the events that occur when my program runs:
 Event Log:  
 
 Wed Nov 27 10:09:33 PST 2024  
-
 Added destination Paris to My Travel Bucket List  
-
 Wed Nov 27 10:09:36 PST 2024  
-
 Marked Paris as visited in My Travel Bucket List  
-
 Wed Nov 27 10:09:43 PST 2024  
-
 Added destination Shanghai to My Travel Bucket List  
-
 Wed Nov 27 10:09:48 PST 2024  
-
 Added destination Hawaii to My Travel Bucket List  
-
 Wed Nov 27 10:09:54 PST 2024  
-
 Added destination London to My Travel Bucket List  
-
 Wed Nov 27 10:09:56 PST 2024  
-
 Marked London as visited in My Travel Bucket List  
-
 Wed Nov 27 10:10:01 PST 2024  
-
 Filtered visited destinations from My Travel Bucket List  
-
 Wed Nov 27 10:10:02 PST 2024  
-
 Filtered not visited destinations from My Travel Bucket List  
-
 Wed Nov 27 10:10:04 PST 2024  
-
 Displayed all destinations from My Travel Bucket List  
-
 Wed Nov 27 10:10:06 PST 2024  
-
 Removed destination Shanghai from My Travel Bucket List
