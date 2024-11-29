@@ -89,6 +89,7 @@ Removed destination Shanghai from My Travel Bucket List
 
 ## *Phase 4: Task 3* ##
 **If you had more time to work on the project, what refactoring might you use to improve your design?**
+
 One of the refactoring changes I would make is to rename methods and variables to improve clarity and consistency in the project. In TravelBucketList, I would rename methods such as markAsVisited and addDestination to markDestinationAsVisited and addNewDestination. For variables like visitStatus in my Destination class, I would rename them to isVisited to better indicate its purpose as a boolean flag.
 
 Another change I would make when refactoring is to extract repeated code into helper methods. In my UI classes, the code for clearing the listModel and iterating over destinations appears in multiple methods for filtering and displaying lists. Instead, I would extract the repetitive code into a single method that would make the code more concise and avoid repetition. This would also make it easier to update, display, and improve maintainability as it could all be done in one place. 
